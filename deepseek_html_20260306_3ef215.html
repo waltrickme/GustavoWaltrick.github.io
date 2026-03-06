@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Gustavo Waltrick </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .cv-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            color: black;
+            line-height: 1.5;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: black;
+        }
+        .contact-info {
+            margin-bottom: 25px;
+            font-size: 14px;
+            color: #333;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 15px;
+        }
+        .contact-info p {
+            margin-bottom: 3px;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000;
+            padding-bottom: 4px;
+            margin-bottom: 15px;
+            color: black;
+        }
+        .job {
+            margin-bottom: 20px;
+        }
+        .job-header {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .job-company {
+            font-weight: 600;
+            color: #333;
+        }
+        .job-date {
+            font-weight: normal;
+            color: #555;
+        }
+        .job-location {
+            color: #555;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        .job-description {
+            list-style-type: none;
+            margin-left: 0;
+        }
+        .job-description li {
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #222;
+        }
+        .job-description li::before {
+            content: "•";
+            margin-right: 8px;
+        }
+        .education-item {
+            margin-bottom: 15px;
+        }
+        .education-title {
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .education-sub {
+            color: #333;
+        }
+        .education-date {
+            color: #555;
+        }
+        .skill-list {
+            list-style-type: none;
+        }
+        .skill-list li {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .skill-list li::before {
+            content: "•";
+            margin-right: 8px;
+        }
+        .language-list {
+            list-style-type: none;
+        }
+        .language-list li {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .cert-list {
+            list-style-type: none;
+        }
+        .cert-list li {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .cert-list li::before {
+            content: "•";
+            margin-right: 8px;
+        }
+        .additional-info p {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 15px 0;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- HEADER -->
+        <h1>[NOME COMPLETO]</h1>
+        <div class="contact-info">
+            <p>📍 Lisboa, Portugal</p>
+            <p>📞 +351 964 608 441</p>
+            <p>✉️ [seu email]</p>
+            <p>🔗 linkedin.com/in/[seu-perfil]</p>
+        </div>
+
+        <!-- PERFIL -->
+        <div class="section">
+            <div class="section-title">PERFIL</div>
+            <p style="font-size: 14px; text-align: justify; color: #222;">
+                Profissional com perfil analítico, organizado e com forte motivação para ingressar na área administrativa e financeira. Apesar de ainda não ter experiência prática comprovada em cálculo de comissões ou faturação, venho dedicando-me a uma formação sólida em análise de dados, com domínio prático de Excel Avançado, Power BI, SQL e Python. Possuo capacidade comprovada de adaptação rápida, aprendizagem autónoma e experiência anterior em contextos internacionais que exigem organização, comunicação e rigor. Busco a minha primeira oportunidade no setor, com total disponibilidade para aprender, contribuir e crescer com a equipa.
+            </p>
+        </div>
+
+        <!-- EXPERIÊNCIA PROFISSIONAL -->
+        <div class="section">
+            <div class="section-title">EXPERIÊNCIA PROFISSIONAL</div>
+            
+            <div class="job">
+                <div class="job-header">Rececionista Multilíngue – Gestão de Dados e Relatórios</div>
+                <div class="job-company">Sicily by Car, Lisboa | Setembro 2024 – Atual</div>
+                <ul class="job-description">
+                    <li>Gestão e análise diária de frota, com geração de relatórios operacionais para controlo de utilização e desempenho</li>
+                    <li>Operação de sistemas de CRM, garantindo a integridade e atualização de bases de dados de clientes</li>
+                    <li>Controlo de caixa e fecho diário de contas, com validação de valores e cruzamento de informação</li>
+                    <li>Apoio administrativo a equipas comerciais, com foco em organização de contratos e registo de informações</li>
+                    <li>Desenvolvimento de relatórios em Excel para monitorização de indicadores operacionais</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">Rececionista – Apoio Administrativo e Atendimento Comercial</div>
+                <div class="job-company">Drivalia Airport, Lisboa | Fevereiro 2023 – Agosto 2024</div>
+                <ul class="job-description">
+                    <li>Processamento e validação de contratos de aluguer, com registo e atualização de dados em sistemas internos</li>
+                    <li>Suporte à gestão de frota e entrada de dados operacionais</li>
+                    <li>Colaboração com equipas comerciais no atendimento a clientes internacionais e na gestão de reservas</li>
+                    <li>Utilização de Excel para organização e cruzamento de informação contratual</li>
+                </ul>
+            </div>
+
+            <div class="job">
+                <div class="job-header">Supervisor de Marketing e Vendas – Análise de Dados e CRM</div>
+                <div class="job-company">Hotel Fazenda (Luxo), Brasil | Janeiro 2020 – Dezembro 2023</div>
+                <ul class="job-description">
+                    <li>Gestão de reservas e otimização de taxas de ocupação com base em análise de dados e tendências de mercado</li>
+                    <li>Utilização de CRM para segmentação de clientes e acompanhamento de preferências, suportando ações comerciais personalizadas</li>
+                    <li>Elaboração de relatórios de desempenho comercial e apresentação de indicadores à administração</li>
+                    <li>Coordenação de campanhas multicanal e monitorização de KPIs (engagement, conversão, retenção)</li>
+                    <li>Desenvolvimento de dashboards e análise de dados para suporte à tomada de decisão</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FORMAÇÃO E CERTIFICAÇÕES -->
+        <div class="section">
+            <div class="section-title">FORMAÇÃO E CERTIFICAÇÕES</div>
+            
+            <div class="education-item">
+                <div class="education-title">Certificado Profissional em Análise de Dados</div>
+                <div class="education-sub">IBM | Conclusão prevista: Julho 2025</div>
+            </div>
+
+            <div class="education-item">
+                <div class="education-title">Análise de Dados e TI Aplicada à Gestão</div>
+                <div class="education-sub">Prepara Portugal | Julho 2025 – Outubro 2026</div>
+            </div>
+
+            <div class="education-item">
+                <div class="education-title">Técnico Superior em Administração</div>
+                <div class="education-sub">SENAC, Brasil | 2015</div>
+            </div>
+        </div>
+
+        <!-- COMPETÊNCIAS TÉCNICAS -->
+        <div class="section">
+            <div class="section-title">COMPETÊNCIAS TÉCNICAS</div>
+            <ul class="skill-list">
+                <li><strong>Excel Avançado:</strong> Tabelas dinâmicas, PROCX, PROCV, validação de dados, cruzamento de informação, fórmulas complexas</li>
+                <li><strong>Ferramentas de Análise:</strong> Power BI (dashboards interativos), SQL (consultas e tratamento de dados), Python (análise e automação)</li>
+                <li><strong>CRM e Bases de Dados:</strong> Gestão de clientes, segmentação, histórico de interações, atualização e integridade de dados</li>
+                <li><strong>Relatórios e KPIs:</strong> Elaboração de relatórios operacionais, controlo de indicadores, análise de desempenho</li>
+                <li><strong>Automação de Processos:</strong> Desenvolvimento de scripts em Python para automatizar tarefas de análise</li>
+            </ul>
+        </div>
+
+        <!-- IDIOMAS -->
+        <div class="section">
+            <div class="section-title">IDIOMAS</div>
+            <ul class="language-list">
+                <li><strong>Português:</strong> Nativo</li>
+                <li><strong>Inglês:</strong> Fluente</li>
+                <li><strong>Espanhol:</strong> Intermediário (B1)</li>
+                <li><strong>Italiano:</strong> Iniciante (A1)</li>
+            </ul>
+        </div>
+
+        <!-- CERTIFICADOS COMPLEMENTARES -->
+        <div class="section">
+            <div class="section-title">CERTIFICADOS COMPLEMENTARES</div>
+            <ul class="cert-list">
+                <li>Python para Ciência de Dados</li>
+                <li>Visualização de Dados com Python</li>
+                <li>Bases de Dados e SQL para Ciência de Dados</li>
+                <li>Análise de Dados com Python</li>
+                <li>IA Generativa: Aprimore sua Carreira em Análise de Dados</li>
+                <li>Visualização de Dados e Dashboards com Excel e Cognos</li>
+                <li>Fundamentos do Excel para Análise de Dados</li>
+            </ul>
+        </div>
+
+        <!-- INFORMAÇÕES ADICIONAIS -->
+        <div class="section">
+            <div class="section-title">INFORMAÇÕES ADICIONAIS</div>
+            <div class="additional-info">
+                <p>✅ Disponibilidade imediata para regime híbrido (Lumiar – Lisboa)</p>
+                <p>✅ Carta de condução e transporte próprio</p>
+                <p>✅ Flexibilidade horária e total abertura para aprendizagem contínua</p>
+                <p>✅ Perfil autónomo, responsável e com forte capacidade de adaptação</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
