@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Gustavo Waltrick</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+        .cv-container {
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            color: black;
+            line-height: 1.5;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 20px;
+        }
+        .photo {
+            width: 130px;
+            height: 160px;
+            background-color: #f0f0f0;
+            border: 2px solid #333;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2c3e50;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 1.2;
+            padding: 10px;
+        }
+        .header-text {
+            flex: 1;
+        }
+        .header-text h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .contact-info {
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-bottom: 2px solid #000;
+            padding-bottom: 4px;
+            margin-bottom: 15px;
+            color: black;
+        }
+        .job {
+            margin-bottom: 20px;
+        }
+        .job-header {
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .job-company {
+            font-weight: 600;
+            color: #333;
+        }
+        .job-date {
+            font-weight: normal;
+            color: #555;
+        }
+        .job-description {
+            list-style-type: none;
+            margin-left: 0;
+        }
+        .job-description li {
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #222;
+        }
+        .job-description li::before {
+            content: "•";
+            margin-right: 8px;
+        }
+        .education-item {
+            margin-bottom: 15px;
+        }
+        .education-title {
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .education-sub {
+            color: #333;
+        }
+        .skill-list {
+            list-style-type: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .skill-list li {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .skill-list li::before {
+            content: "•";
+            margin-right: 8px;
+        }
+        .language-list {
+            list-style-type: none;
+        }
+        .language-list li {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        .language-list li::before {
+            content: "•";
+            margin-right: 8px;
+        }
+        .additional-info p {
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 15px 0;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        .row {
+            display: flex;
+            gap: 30px;
+        }
+        .col {
+            flex: 1;
+        }
+        .footer-note {
+            font-size: 11px;
+            color: #777;
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-container">
+        <!-- HEADER WITH PHOTO (Modelo Europeu) -->
+        <div class="header">
+            <div class="photo">
+                <!-- INSTRUÇÃO: Substituir por <img src="caminho-da-sua-foto.jpg" alt="Gustavo Waltrick"> -->
+                <div class="photo-placeholder">[FOTO]</div>
+            </div>
+            <div class="header-text">
+                <h1>Gustavo Waltrick</h1>
+                <div class="contact-info"><strong>Morada:</strong> Lisboa, Portugal</div>
+                <div class="contact-info"><strong>Telefone:</strong> +351 964 608 441</div>
+                <div class="contact-info"><strong>E-mail:</strong> waltrickme@gmail.com</div>
+                <div class="contact-info"><strong>LinkedIn:</strong> linkedin.com/in/waltrick</div>
+            </div>
+        </div>
+
+        <!-- PERFIL PROFISSIONAL -->
+        <div class="section">
+            <div class="section-title">PERFIL PROFISSIONAL</div>
+            <p style="font-size: 14px; text-align: justify; color: #222;">
+                Profissional com mais de 7 anos de experiência em <strong>front-office, atendimento ao cliente e gestão administrativa</strong>, com forte capacidade organizacional e visão analítica. Atualmente a frequentar formação avançada em Análise de Dados (IBM e Prepara Portugal), com domínio prático de <strong>Excel Avançado, CRM e ferramentas de faturação</strong>. Inscrito no IEFP, com disponibilidade imediata para trabalho presencial em Lisboa. Fluente em inglês, com experiência comprovada em contextos internacionais.
+            </p>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <!-- EXPERIÊNCIA PROFISSIONAL -->
+                <div class="section">
+                    <div class="section-title">EXPERIÊNCIA PROFISSIONAL</div>
+                    
+                    <div class="job">
+                        <div class="job-header">Rececionista Multilíngue – Front-Office e Gestão Administrativa</div>
+                        <div class="job-company">Sicily by Car, Lisboa | Set 2024 – Out 2025</div>
+                        <ul class="job-description">
+                            <li>Atendimento presencial e telefónico a clientes internacionais</li>
+                            <li>Gestão de contratos, controlo de caixa e fecho diário de contas</li>
+                            <li>Organização documental e arquivo (físico e digital)</li>
+                            <li>Operação de sistemas CRM e bases de dados de clientes</li>
+                            <li>Desenvolvimento de relatórios operacionais em Excel</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">Rececionista – Apoio Administrativo e Comercial</div>
+                        <div class="job-company">Drivalia Airport, Lisboa | Fev 2023 – Ago 2024</div>
+                        <ul class="job-description">
+                            <li>Processamento e validação de contratos de aluguer</li>
+                            <li>Suporte à gestão de frota e entrada de dados operacionais</li>
+                            <li>Organização de documentação e arquivo contratual</li>
+                            <li>Atendimento a clientes internacionais (inglês, espanhol, italiano)</li>
+                        </ul>
+                    </div>
+
+                    <div class="job">
+                        <div class="job-header">Supervisor de Marketing e Vendas – Gestão e CRM</div>
+                        <div class="job-company">Hotel Fazenda (Luxo), Brasil | Jan 2020 – Dez 2023</div>
+                        <ul class="job-description">
+                            <li>Gestão de reservas e controlo de ocupação</li>
+                            <li>Utilização de CRM para segmentação e acompanhamento de clientes</li>
+                            <li>Elaboração de relatórios de desempenho e indicadores</li>
+                            <li>Coordenação de equipas e suporte administrativo</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <!-- FORMAÇÃO ACADÉMICA -->
+                <div class="section">
+                    <div class="section-title">FORMAÇÃO ACADÉMICA</div>
+                    
+                    <div class="education-item">
+                        <div class="education-title">Certificado Profissional em Análise de Dados</div>
+                        <div class="education-sub">IBM | Conclusão prevista: Julho 2025</div>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="education-title">Análise de Dados e TI Aplicada à Gestão</div>
+                        <div class="education-sub">Prepara Portugal | 2025 – 2026</div>
+                    </div>
+
+                    <div class="education-item">
+                        <div class="education-title">Técnico Superior em Administração</div>
+                        <div class="education-sub">SENAC, Brasil | 2015</div>
+                    </div>
+                </div>
+
+                <!-- COMPETÊNCIAS TÉCNICAS -->
+                <div class="section">
+                    <div class="section-title">COMPETÊNCIAS</div>
+                    <ul class="skill-list">
+                        <li><strong>Front-Office:</strong> Atendimento presencial e telefónico</li>
+                        <li><strong>Gestão Administrativa:</strong> Contratos, arquivo, documentação</li>
+                        <li><strong>Financeiro:</strong> Faturação, controlo de caixa, pagamentos</li>
+                        <li><strong>Excel Avançado:</strong> Tabelas dinâmicas, PROCX, validação</li>
+                        <li><strong>CRM:</strong> Gestão de clientes e bases de dados</li>
+                        <li><strong>Power BI:</strong> Dashboards e relatórios</li>
+                        <li><strong>Organização:</strong> Arquivo físico e digital</li>
+                        <li><strong>Idiomas:</strong> Inglês fluente, Espanhol B1, Italiano A1</li>
+                    </ul>
+                </div>
+
+                <!-- IDIOMAS -->
+                <div class="section">
+                    <div class="section-title">IDIOMAS</div>
+                    <ul class="language-list">
+                        <li><strong>Português:</strong> Nativo</li>
+                        <li><strong>Inglês:</strong> Fluente (escrito e falado)</li>
+                        <li><strong>Espanhol:</strong> Intermediário (B1)</li>
+                        <li><strong>Italiano:</strong> Iniciante (A1)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- INFORMAÇÕES ADICIONAIS -->
+        <div class="section">
+            <div class="section-title">INFORMAÇÕES ADICIONAIS</div>
+            <div class="additional-info">
+                <p>✅ <strong>Inscrito no IEFP</strong> (desempregado) – requisito obrigatório da vaga</p>
+                <p>✅ Disponível para trabalho presencial em Lisboa</p>
+                <p>✅ Carta de condução e transporte próprio</p>
+                <p>✅ Disponibilidade imediata</p>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <hr>
+        <div class="footer-note">
+            Modelo Europeu com fotografia | https://waltrickme.github.io
+        </div>
+    </div>
+</body>
+</html>
