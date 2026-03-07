@@ -55,10 +55,26 @@
             background-color: #f0f0f0;
             cursor: pointer;
             transition: all 0.2s;
+            position: relative;
         }
         .photo-container:hover {
             border-color: #3498db;
             box-shadow: 0 0 0 2px rgba(52,152,219,0.3);
+        }
+        .photo-container:hover::after {
+            content: "✏️";
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
         }
         .photo-container img {
             width: 100%;
@@ -140,6 +156,9 @@
         .education-sub {
             color: #333;
         }
+        .education-date {
+            color: #555;
+        }
         .skill-list {
             list-style-type: none;
             display: grid;
@@ -199,6 +218,7 @@
             border-radius: 12px;
             padding: 25px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
         }
         .editor-title {
             font-size: 18px;
@@ -269,8 +289,14 @@
         .btn-warning:hover {
             background-color: #e67e22;
         }
+        .btn-danger {
+            background-color: #e74c3c;
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
         .preview-container {
-            margin-top: 20px;
             border: 2px dashed #ccc;
             padding: 20px;
             text-align: center;
@@ -295,17 +321,72 @@
             max-width: 100%;
             max-height: 400px;
             cursor: grab;
+            transform-origin: center;
         }
         #cropImage:active {
             cursor: grabbing;
         }
         .hidden {
-            display: none;
+            display: none !important;
         }
         .info-text {
             font-size: 12px;
             color: #666;
             margin-top: 5px;
+        }
+        
+        /* Modal de confirmação */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 400px;
+            text-align: center;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .edit-panel-hidden {
+            display: none;
+        }
+        .edit-panel-visible {
+            display: block;
+        }
+        .photo-edit-icon {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background-color: rgba(0,0,0,0.6);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            pointer-events: none;
+        }
+        .fit-info {
+            font-size: 12px;
+            color: #e67e22;
+            margin-top: 5px;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -319,6 +400,7 @@
                     <div class="photo-container" id="photoPlaceholder">
                         <div class="photo-placeholder" id="placeholderText">📷</div>
                         <img id="profilePhoto" src="" alt="Profile Photo" style="display: none;">
+                        <div class="photo-edit-icon" id="editIcon" style="display: none;">✏️</div>
                     </div>
                     <div class="header-text">
                         <h1>Gustavo Waltrick</h1>
@@ -447,25 +529,24 @@
             </div>
         </div>
 
-        <!-- Painel de Edição de Foto -->
-        <div class="editor-panel">
+        <!-- Painel de Edição de Foto (inicialmente escondido) -->
+        <div id="editorPanel" class="editor-panel hidden">
             <div class="editor-title">
-                <span>🖼️ Editor de Foto para o CV</span>
+                <span>🖼️ Editor de Foto</span>
             </div>
             
             <div class="editor-controls">
-                <!-- Input escondido para selecionar ficheiro -->
                 <input type="file" id="fileInput" accept="image/*" style="display: none;">
                 
                 <div class="control-group">
-                    <button class="btn btn-primary" id="selectPhotoBtn">Selecionar Foto do Computador</button>
-                    <span class="info-text">Clique para escolher uma imagem (JPG, PNG, etc.)</span>
+                    <button class="btn btn-primary" id="selectPhotoBtn">📁 Selecionar Nova Foto</button>
+                    <span class="info-text">Escolha uma imagem do computador</span>
                 </div>
 
-                <!-- Área de edição (inicialmente escondida) -->
-                <div id="editArea" style="display: none;">
+                <div id="editArea">
                     <div class="preview-container">
                         <div class="preview-title">Ajusta a tua foto:</div>
+                        <div class="fit-info" id="fitWarning">⚠️ Ajusta o zoom para que a foto caiba no quadrado</div>
                         <div class="crop-container" id="cropContainer">
                             <img id="cropImage" src="" alt="Imagem para ajustar" style="transform: scale(1) translate(0px, 0px);">
                         </div>
@@ -478,19 +559,32 @@
                         
                         <div class="control-group">
                             <label>↔️ Mover:</label>
-                            <span class="info-text">Arrasta a imagem com o rato para a posicionar</span>
+                            <span class="info-text">Arrasta a imagem com o rato para posicionar</span>
                         </div>
                         
                         <div class="button-group">
-                            <button class="btn btn-warning" id="resetBtn">Repor</button>
-                            <button class="btn btn-success" id="applyBtn">Aplicar Foto ao CV</button>
+                            <button class="btn btn-warning" id="resetBtn">🔄 Repor</button>
+                            <button class="btn btn-success" id="applyBtn">✅ Guardar Foto no CV</button>
+                            <button class="btn btn-secondary" id="cancelBtn">✖️ Cancelar</button>
                         </div>
                         
                         <div class="info-text" style="margin-top: 10px;">
-                            ⚡ Depois de aplicares, podes guardar a página como PDF (Ctrl+P)
+                            ⚡ Depois de guardar, podes imprimir como PDF (Ctrl+P)
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmação (inicialmente escondido) -->
+    <div id="confirmModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3 style="margin-bottom: 15px;">✏️ Editar Foto</h3>
+            <p>Tens a certeza que desejas editar a foto do CV?</p>
+            <div class="modal-buttons">
+                <button class="btn btn-primary" id="confirmEdit">Sim, editar</button>
+                <button class="btn btn-secondary" id="cancelEdit">Não, cancelar</button>
             </div>
         </div>
     </div>
@@ -502,29 +596,86 @@
         const photoPlaceholder = document.getElementById('photoPlaceholder');
         const placeholderText = document.getElementById('placeholderText');
         const profilePhoto = document.getElementById('profilePhoto');
+        const editIcon = document.getElementById('editIcon');
         
+        const editorPanel = document.getElementById('editorPanel');
         const editArea = document.getElementById('editArea');
         const cropImage = document.getElementById('cropImage');
         const zoomSlider = document.getElementById('zoomSlider');
         const zoomValue = document.getElementById('zoomValue');
         const resetBtn = document.getElementById('resetBtn');
         const applyBtn = document.getElementById('applyBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        
+        const confirmModal = document.getElementById('confirmModal');
+        const confirmEdit = document.getElementById('confirmEdit');
+        const cancelEdit = document.getElementById('cancelEdit');
+        
+        const fitWarning = document.getElementById('fitWarning');
         
         // Variáveis para controlo do arrasto
         let isDragging = false;
         let startX, startY;
         let currentX = 0, currentY = 0;
         let currentScale = 1;
+        let hasPhoto = false;
         
-        // Abrir seletor de ficheiros ao clicar no botão
+        // Mostrar ícone de edição se já houver foto
+        if (profilePhoto.src && profilePhoto.src !== '') {
+            hasPhoto = true;
+            editIcon.style.display = 'flex';
+        }
+        
+        // Clique na foto
+        photoPlaceholder.addEventListener('click', () => {
+            if (hasPhoto) {
+                // Se já existe foto, mostrar modal de confirmação
+                confirmModal.style.display = 'flex';
+            } else {
+                // Se não existe foto, abrir diretamente o editor
+                openEditor();
+            }
+        });
+        
+        // Confirmar edição
+        confirmEdit.addEventListener('click', () => {
+            confirmModal.style.display = 'none';
+            openEditor();
+        });
+        
+        // Cancelar edição
+        cancelEdit.addEventListener('click', () => {
+            confirmModal.style.display = 'none';
+        });
+        
+        // Fechar modal clicando fora
+        confirmModal.addEventListener('click', (e) => {
+            if (e.target === confirmModal) {
+                confirmModal.style.display = 'none';
+            }
+        });
+        
+        // Abrir editor
+        function openEditor() {
+            editorPanel.classList.remove('hidden');
+            if (!cropImage.src) {
+                // Se não há imagem carregada, abrir seletor automaticamente
+                fileInput.click();
+            }
+        }
+        
+        // Fechar editor
+        function closeEditor() {
+            editorPanel.classList.add('hidden');
+        }
+        
+        // Selecionar foto
         selectPhotoBtn.addEventListener('click', () => {
             fileInput.click();
         });
         
-        // Também podes clicar diretamente no placeholder da foto
-        photoPlaceholder.addEventListener('click', () => {
-            fileInput.click();
-        });
+        // Cancelar edição
+        cancelBtn.addEventListener('click', closeEditor);
         
         // Quando um ficheiro é selecionado
         fileInput.addEventListener('change', (e) => {
@@ -533,20 +684,47 @@
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     cropImage.src = event.target.result;
-                    
-                    // Reset de transformações
                     resetTransformations();
-                    
-                    // Mostrar área de edição
                     editArea.style.display = 'block';
                     
-                    // Esconder placeholder e mostrar imagem no CV (temporariamente vazia)
-                    placeholderText.style.display = 'none';
-                    profilePhoto.style.display = 'none';
+                    // Quando a imagem carregar, verificar se precisa de zoom
+                    cropImage.onload = () => {
+                        checkFit();
+                    };
                 };
                 reader.readAsDataURL(file);
             }
         });
+        
+        // Verificar se a imagem cabe no quadrado
+        function checkFit() {
+            if (cropImage.naturalWidth && cropImage.naturalHeight) {
+                const containerWidth = 130;
+                const containerHeight = 160;
+                
+                const imgRatio = cropImage.naturalWidth / cropImage.naturalHeight;
+                const containerRatio = containerWidth / containerHeight;
+                
+                let suggestedZoom = 1;
+                
+                if (imgRatio > containerRatio) {
+                    // Imagem mais larga que o container
+                    suggestedZoom = containerHeight / cropImage.naturalHeight;
+                } else {
+                    // Imagem mais alta que o container
+                    suggestedZoom = containerWidth / cropImage.naturalWidth;
+                }
+                
+                // Se o zoom sugerido for menor que 1, significa que a imagem é maior que o container
+                if (suggestedZoom < 1) {
+                    fitWarning.textContent = '⚠️ Imagem muito grande! Usa o zoom para ajustar.';
+                    fitWarning.style.color = '#e74c3c';
+                } else {
+                    fitWarning.textContent = '✅ Imagem com bom tamanho. Podes ajustar o zoom se quiseres.';
+                    fitWarning.style.color = '#27ae60';
+                }
+            }
+        }
         
         // Resetar transformações
         function resetTransformations() {
@@ -597,44 +775,47 @@
         
         // Botão aplicar ao CV
         applyBtn.addEventListener('click', () => {
-            // Criar um canvas para capturar a imagem com as transformações
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             
-            // Definir tamanho do canvas igual ao container da foto (130x160)
             canvas.width = 130;
             canvas.height = 160;
             
-            // Desenhar a imagem com as transformações aplicadas
             const img = cropImage;
             
-            // Calcular dimensões após transformações
             const imgWidth = img.naturalWidth * currentScale;
             const imgHeight = img.naturalHeight * currentScale;
             
-            // Calcular posição centralizada + deslocamento do arrasto
             const offsetX = (canvas.width - imgWidth) / 2 + currentX;
             const offsetY = (canvas.height - imgHeight) / 2 + currentY;
             
-            // Desenhar imagem no canvas
             ctx.drawImage(img, offsetX, offsetY, imgWidth, imgHeight);
             
-            // Converter canvas para data URL
             const dataURL = canvas.toDataURL('image/png');
             
-            // Atualizar foto no CV
             profilePhoto.src = dataURL;
             profilePhoto.style.display = 'block';
             placeholderText.style.display = 'none';
+            editIcon.style.display = 'flex';
             
-            // Opcional: esconder área de edição
-            // editArea.style.display = 'none';
+            hasPhoto = true;
             
-            alert('Foto aplicada com sucesso! Agora podes guardar como PDF.');
+            // Fechar editor
+            closeEditor();
+            
+            alert('Foto guardada com sucesso! Agora podes gerar o PDF (Ctrl+P).');
         });
         
         // Prevenir comportamento padrão do rato na imagem
         cropImage.addEventListener('dragstart', (e) => e.preventDefault());
+        
+        // Tecla ESC para fechar modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                confirmModal.style.display = 'none';
+                closeEditor();
+            }
+        });
     </script>
 </body>
 </html>
