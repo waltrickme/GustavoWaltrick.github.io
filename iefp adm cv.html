@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV - Gustavo Waltrick</title>
+    <title>CV Interativo - Gustavo Waltrick</title>
     <style>
         * {
             margin: 0;
@@ -12,15 +12,27 @@
             font-family: Arial, Helvetica, sans-serif;
         }
         body {
-            background-color: white;
+            background-color: #f5f5f5;
             display: flex;
             justify-content: center;
             padding: 40px 20px;
         }
+        .editor-container {
+            max-width: 1000px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .cv-wrapper {
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            border-radius: 12px;
+        }
         .cv-container {
             max-width: 800px;
-            width: 100%;
-            background-color: white;
+            margin: 0 auto;
             color: black;
             line-height: 1.5;
         }
@@ -32,20 +44,27 @@
             border-bottom: 2px solid #000;
             padding-bottom: 20px;
         }
-        .photo {
+        .photo-container {
             width: 130px;
             height: 160px;
-            background-color: #f0f0f0;
             border: 2px solid #333;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            transition: all 0.2s;
         }
-        .photo img {
+        .photo-container:hover {
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52,152,219,0.3);
+        }
+        .photo-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
         }
         .photo-placeholder {
             width: 100%;
@@ -58,8 +77,6 @@
             font-size: 40px;
             font-weight: bold;
             text-align: center;
-            line-height: 1.2;
-            padding: 10px;
         }
         .header-text {
             flex: 1;
@@ -175,140 +192,449 @@
             margin-top: 20px;
             font-style: italic;
         }
+        
+        /* Painel de edição */
+        .editor-panel {
+            background-color: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .editor-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .editor-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .control-group label {
+            font-weight: bold;
+            width: 80px;
+        }
+        .slider {
+            flex: 1;
+            min-width: 200px;
+        }
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background-color: #3498db;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #2980b9;
+        }
+        .btn-secondary {
+            background-color: #95a5a6;
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+        .btn-success {
+            background-color: #27ae60;
+            color: white;
+        }
+        .btn-success:hover {
+            background-color: #2ecc71;
+        }
+        .btn-warning {
+            background-color: #f39c12;
+            color: white;
+        }
+        .btn-warning:hover {
+            background-color: #e67e22;
+        }
+        .preview-container {
+            margin-top: 20px;
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .preview-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .crop-container {
+            position: relative;
+            width: 100%;
+            max-height: 400px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            background-color: #eee;
+            border-radius: 8px;
+        }
+        #cropImage {
+            max-width: 100%;
+            max-height: 400px;
+            cursor: grab;
+        }
+        #cropImage:active {
+            cursor: grabbing;
+        }
+        .hidden {
+            display: none;
+        }
+        .info-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
-    <div class="cv-container">
-        <!-- HEADER WITH PHOTO (Modelo Europeu) -->
-        <div class="header">
-            <div class="photo">
-                <!-- INSTRUÇÃO: Substituir por <img src="caminho-da-sua-foto.jpg" alt="Gustavo Waltrick"> -->
-                <div class="photo-placeholder">[FOTO]</div>
-            </div>
-            <div class="header-text">
-                <h1>Gustavo Waltrick</h1>
-                <div class="contact-info"><strong>Morada:</strong> Lisboa, Portugal</div>
-                <div class="contact-info"><strong>Telefone:</strong> +351 964 608 441</div>
-                <div class="contact-info"><strong>E-mail:</strong> waltrickme@gmail.com</div>
-                <div class="contact-info"><strong>LinkedIn:</strong> linkedin.com/in/waltrick</div>
-            </div>
-        </div>
-
-        <!-- PERFIL PROFISSIONAL -->
-        <div class="section">
-            <div class="section-title">PERFIL PROFISSIONAL</div>
-            <p style="font-size: 14px; text-align: justify; color: #222;">
-                Profissional com mais de 7 anos de experiência em <strong>front-office, atendimento ao cliente e gestão administrativa</strong>, com forte capacidade organizacional e visão analítica. Atualmente a frequentar formação avançada em Análise de Dados (IBM e Prepara Portugal), com domínio prático de <strong>Excel Avançado, CRM e ferramentas de faturação</strong>. Inscrito no IEFP, com disponibilidade imediata para trabalho presencial em Lisboa. Fluente em inglês, com experiência comprovada em contextos internacionais.
-            </p>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <!-- EXPERIÊNCIA PROFISSIONAL -->
-                <div class="section">
-                    <div class="section-title">EXPERIÊNCIA PROFISSIONAL</div>
-                    
-                    <div class="job">
-                        <div class="job-header">Rececionista Multilíngue – Front-Office e Gestão Administrativa</div>
-                        <div class="job-company">Sicily by Car, Lisboa | Set 2024 – Out 2025</div>
-                        <ul class="job-description">
-                            <li>Atendimento presencial e telefónico a clientes internacionais</li>
-                            <li>Gestão de contratos, controlo de caixa e fecho diário de contas</li>
-                            <li>Organização documental e arquivo (físico e digital)</li>
-                            <li>Operação de sistemas CRM e bases de dados de clientes</li>
-                            <li>Desenvolvimento de relatórios operacionais em Excel</li>
-                        </ul>
+    <div class="editor-container">
+        <!-- CV Preview -->
+        <div class="cv-wrapper">
+            <div class="cv-container">
+                <!-- HEADER WITH PHOTO (clicável) -->
+                <div class="header">
+                    <div class="photo-container" id="photoPlaceholder">
+                        <div class="photo-placeholder" id="placeholderText">📷</div>
+                        <img id="profilePhoto" src="" alt="Profile Photo" style="display: none;">
                     </div>
-
-                    <div class="job">
-                        <div class="job-header">Rececionista – Apoio Administrativo e Comercial</div>
-                        <div class="job-company">Drivalia Airport, Lisboa | Fev 2023 – Ago 2024</div>
-                        <ul class="job-description">
-                            <li>Processamento e validação de contratos de aluguer</li>
-                            <li>Suporte à gestão de frota e entrada de dados operacionais</li>
-                            <li>Organização de documentação e arquivo contratual</li>
-                            <li>Atendimento a clientes internacionais (inglês, espanhol, italiano)</li>
-                        </ul>
-                    </div>
-
-                    <div class="job">
-                        <div class="job-header">Supervisor de Marketing e Vendas – Gestão e CRM</div>
-                        <div class="job-company">Hotel Fazenda (Luxo), Brasil | Jan 2020 – Dez 2023</div>
-                        <ul class="job-description">
-                            <li>Gestão de reservas e controlo de ocupação</li>
-                            <li>Utilização de CRM para segmentação e acompanhamento de clientes</li>
-                            <li>Elaboração de relatórios de desempenho e indicadores</li>
-                            <li>Coordenação de equipas e suporte administrativo</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <!-- FORMAÇÃO ACADÉMICA -->
-                <div class="section">
-                    <div class="section-title">FORMAÇÃO ACADÉMICA</div>
-                    
-                    <div class="education-item">
-                        <div class="education-title">Certificado Profissional em Análise de Dados</div>
-                        <div class="education-sub">IBM | Conclusão prevista: Julho 2025</div>
-                    </div>
-
-                    <div class="education-item">
-                        <div class="education-title">Análise de Dados e TI Aplicada à Gestão</div>
-                        <div class="education-sub">Prepara Portugal | 2025 – 2026</div>
-                    </div>
-
-                    <div class="education-item">
-                        <div class="education-title">Técnico Superior em Administração</div>
-                        <div class="education-sub">SENAC, Brasil | 2015</div>
+                    <div class="header-text">
+                        <h1>Gustavo Waltrick</h1>
+                        <div class="contact-info"><strong>Morada:</strong> Lisboa, Portugal</div>
+                        <div class="contact-info"><strong>Telefone:</strong> +351 964 608 441</div>
+                        <div class="contact-info"><strong>E-mail:</strong> waltrickme@gmail.com</div>
+                        <div class="contact-info"><strong>LinkedIn:</strong> linkedin.com/in/waltrick</div>
                     </div>
                 </div>
 
-                <!-- COMPETÊNCIAS TÉCNICAS -->
+                <!-- PERFIL PROFISSIONAL -->
                 <div class="section">
-                    <div class="section-title">COMPETÊNCIAS</div>
-                    <ul class="skill-list">
-                        <li><strong>Front-Office:</strong> Atendimento presencial e telefónico</li>
-                        <li><strong>Gestão Administrativa:</strong> Contratos, arquivo, documentação</li>
-                        <li><strong>Financeiro:</strong> Faturação, controlo de caixa, pagamentos</li>
-                        <li><strong>Excel Avançado:</strong> Tabelas dinâmicas, PROCX, validação</li>
-                        <li><strong>CRM:</strong> Gestão de clientes e bases de dados</li>
-                        <li><strong>Power BI:</strong> Dashboards e relatórios</li>
-                        <li><strong>Organização:</strong> Arquivo físico e digital</li>
-                        <li><strong>Idiomas:</strong> Inglês fluente, Espanhol B1, Italiano A1</li>
-                    </ul>
+                    <div class="section-title">PERFIL PROFISSIONAL</div>
+                    <p style="font-size: 14px; text-align: justify; color: #222;">
+                        Profissional com mais de 7 anos de experiência em <strong>front-office, atendimento ao cliente e gestão administrativa</strong>, com forte capacidade organizacional e visão analítica. Atualmente a frequentar formação avançada em Análise de Dados (IBM e Prepara Portugal), com domínio prático de <strong>Excel Avançado, CRM e ferramentas de faturação</strong>. Inscrito no IEFP, com disponibilidade imediata para trabalho presencial em Lisboa. Fluente em inglês, com experiência comprovada em contextos internacionais.
+                    </p>
                 </div>
 
-                <!-- IDIOMAS -->
+                <div class="row">
+                    <div class="col">
+                        <!-- EXPERIÊNCIA PROFISSIONAL -->
+                        <div class="section">
+                            <div class="section-title">EXPERIÊNCIA PROFISSIONAL</div>
+                            
+                            <div class="job">
+                                <div class="job-header">Rececionista Multilíngue – Front-Office e Gestão Administrativa</div>
+                                <div class="job-company">Sicily by Car, Lisboa | Set 2024 – Out 2025</div>
+                                <ul class="job-description">
+                                    <li>Atendimento presencial e telefónico a clientes internacionais</li>
+                                    <li>Gestão de contratos, controlo de caixa e fecho diário de contas</li>
+                                    <li>Organização documental e arquivo (físico e digital)</li>
+                                    <li>Operação de sistemas CRM e bases de dados de clientes</li>
+                                    <li>Desenvolvimento de relatórios operacionais em Excel</li>
+                                </ul>
+                            </div>
+
+                            <div class="job">
+                                <div class="job-header">Rececionista – Apoio Administrativo e Comercial</div>
+                                <div class="job-company">Drivalia Airport, Lisboa | Fev 2023 – Ago 2024</div>
+                                <ul class="job-description">
+                                    <li>Processamento e validação de contratos de aluguer</li>
+                                    <li>Suporte à gestão de frota e entrada de dados operacionais</li>
+                                    <li>Organização de documentação e arquivo contratual</li>
+                                    <li>Atendimento a clientes internacionais (inglês, espanhol, italiano)</li>
+                                </ul>
+                            </div>
+
+                            <div class="job">
+                                <div class="job-header">Supervisor de Marketing e Vendas – Gestão e CRM</div>
+                                <div class="job-company">Hotel Fazenda (Luxo), Brasil | Jan 2020 – Dez 2023</div>
+                                <ul class="job-description">
+                                    <li>Gestão de reservas e controlo de ocupação</li>
+                                    <li>Utilização de CRM para segmentação e acompanhamento de clientes</li>
+                                    <li>Elaboração de relatórios de desempenho e indicadores</li>
+                                    <li>Coordenação de equipas e suporte administrativo</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <!-- FORMAÇÃO ACADÉMICA -->
+                        <div class="section">
+                            <div class="section-title">FORMAÇÃO ACADÉMICA</div>
+                            
+                            <div class="education-item">
+                                <div class="education-title">Certificado Profissional em Análise de Dados</div>
+                                <div class="education-sub">IBM | Conclusão prevista: Julho 2025</div>
+                            </div>
+
+                            <div class="education-item">
+                                <div class="education-title">Análise de Dados e TI Aplicada à Gestão</div>
+                                <div class="education-sub">Prepara Portugal | 2025 – 2026</div>
+                            </div>
+
+                            <div class="education-item">
+                                <div class="education-title">Técnico Superior em Administração</div>
+                                <div class="education-sub">SENAC, Brasil | 2015</div>
+                            </div>
+                        </div>
+
+                        <!-- COMPETÊNCIAS -->
+                        <div class="section">
+                            <div class="section-title">COMPETÊNCIAS</div>
+                            <ul class="skill-list">
+                                <li><strong>Front-Office:</strong> Atendimento presencial e telefónico</li>
+                                <li><strong>Gestão Administrativa:</strong> Contratos, arquivo, documentação</li>
+                                <li><strong>Financeiro:</strong> Faturação, controlo de caixa, pagamentos</li>
+                                <li><strong>Excel Avançado:</strong> Tabelas dinâmicas, PROCX, validação</li>
+                                <li><strong>CRM:</strong> Gestão de clientes e bases de dados</li>
+                                <li><strong>Power BI:</strong> Dashboards e relatórios</li>
+                                <li><strong>Organização:</strong> Arquivo físico e digital</li>
+                                <li><strong>Idiomas:</strong> Inglês fluente, Espanhol B1, Italiano A1</li>
+                            </ul>
+                        </div>
+
+                        <!-- IDIOMAS -->
+                        <div class="section">
+                            <div class="section-title">IDIOMAS</div>
+                            <ul class="language-list">
+                                <li><strong>Português:</strong> Nativo</li>
+                                <li><strong>Inglês:</strong> Fluente (escrito e falado)</li>
+                                <li><strong>Espanhol:</strong> Intermediário (B1)</li>
+                                <li><strong>Italiano:</strong> Iniciante (A1)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INFORMAÇÕES ADICIONAIS -->
                 <div class="section">
-                    <div class="section-title">IDIOMAS</div>
-                    <ul class="language-list">
-                        <li><strong>Português:</strong> Nativo</li>
-                        <li><strong>Inglês:</strong> Fluente (escrito e falado)</li>
-                        <li><strong>Espanhol:</strong> Intermediário (B1)</li>
-                        <li><strong>Italiano:</strong> Iniciante (A1)</li>
-                    </ul>
+                    <div class="section-title">INFORMAÇÕES ADICIONAIS</div>
+                    <div class="additional-info">
+                        <p>✅ <strong>Inscrito no IEFP</strong> (desempregado) – requisito obrigatório da vaga</p>
+                        <p>✅ Disponível para trabalho presencial em Lisboa</p>
+                        <p>✅ Carta de condução e transporte próprio</p>
+                        <p>✅ Disponibilidade imediata</p>
+                    </div>
+                </div>
+
+                <!-- FOOTER -->
+                <hr>
+                <div class="footer-note">
+                    Modelo Europeu com fotografia | https://waltrickme.github.io
                 </div>
             </div>
         </div>
 
-        <!-- INFORMAÇÕES ADICIONAIS -->
-        <div class="section">
-            <div class="section-title">INFORMAÇÕES ADICIONAIS</div>
-            <div class="additional-info">
-                <p>✅ <strong>Inscrito no IEFP</strong> (desempregado) – requisito obrigatório da vaga</p>
-                <p>✅ Disponível para trabalho presencial em Lisboa</p>
-                <p>✅ Carta de condução e transporte próprio</p>
-                <p>✅ Disponibilidade imediata</p>
+        <!-- Painel de Edição de Foto -->
+        <div class="editor-panel">
+            <div class="editor-title">
+                <span>🖼️ Editor de Foto para o CV</span>
             </div>
-        </div>
+            
+            <div class="editor-controls">
+                <!-- Input escondido para selecionar ficheiro -->
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                
+                <div class="control-group">
+                    <button class="btn btn-primary" id="selectPhotoBtn">Selecionar Foto do Computador</button>
+                    <span class="info-text">Clique para escolher uma imagem (JPG, PNG, etc.)</span>
+                </div>
 
-        <!-- FOOTER -->
-        <hr>
-        <div class="footer-note">
-            Modelo Europeu com fotografia | https://waltrickme.github.io
+                <!-- Área de edição (inicialmente escondida) -->
+                <div id="editArea" style="display: none;">
+                    <div class="preview-container">
+                        <div class="preview-title">Ajusta a tua foto:</div>
+                        <div class="crop-container" id="cropContainer">
+                            <img id="cropImage" src="" alt="Imagem para ajustar" style="transform: scale(1) translate(0px, 0px);">
+                        </div>
+                        
+                        <div class="control-group" style="margin-top: 15px;">
+                            <label>🔍 Zoom:</label>
+                            <input type="range" id="zoomSlider" class="slider" min="0.5" max="3" step="0.05" value="1">
+                            <span id="zoomValue">100%</span>
+                        </div>
+                        
+                        <div class="control-group">
+                            <label>↔️ Mover:</label>
+                            <span class="info-text">Arrasta a imagem com o rato para a posicionar</span>
+                        </div>
+                        
+                        <div class="button-group">
+                            <button class="btn btn-warning" id="resetBtn">Repor</button>
+                            <button class="btn btn-success" id="applyBtn">Aplicar Foto ao CV</button>
+                        </div>
+                        
+                        <div class="info-text" style="margin-top: 10px;">
+                            ⚡ Depois de aplicares, podes guardar a página como PDF (Ctrl+P)
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Elementos DOM
+        const fileInput = document.getElementById('fileInput');
+        const selectPhotoBtn = document.getElementById('selectPhotoBtn');
+        const photoPlaceholder = document.getElementById('photoPlaceholder');
+        const placeholderText = document.getElementById('placeholderText');
+        const profilePhoto = document.getElementById('profilePhoto');
+        
+        const editArea = document.getElementById('editArea');
+        const cropImage = document.getElementById('cropImage');
+        const zoomSlider = document.getElementById('zoomSlider');
+        const zoomValue = document.getElementById('zoomValue');
+        const resetBtn = document.getElementById('resetBtn');
+        const applyBtn = document.getElementById('applyBtn');
+        
+        // Variáveis para controlo do arrasto
+        let isDragging = false;
+        let startX, startY;
+        let currentX = 0, currentY = 0;
+        let currentScale = 1;
+        
+        // Abrir seletor de ficheiros ao clicar no botão
+        selectPhotoBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        // Também podes clicar diretamente no placeholder da foto
+        photoPlaceholder.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        // Quando um ficheiro é selecionado
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    cropImage.src = event.target.result;
+                    
+                    // Reset de transformações
+                    resetTransformations();
+                    
+                    // Mostrar área de edição
+                    editArea.style.display = 'block';
+                    
+                    // Esconder placeholder e mostrar imagem no CV (temporariamente vazia)
+                    placeholderText.style.display = 'none';
+                    profilePhoto.style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Resetar transformações
+        function resetTransformations() {
+            currentScale = 1;
+            currentX = 0;
+            currentY = 0;
+            zoomSlider.value = 1;
+            zoomValue.textContent = '100%';
+            updateCropImageTransform();
+        }
+        
+        // Atualizar transformação da imagem
+        function updateCropImageTransform() {
+            cropImage.style.transform = `scale(${currentScale}) translate(${currentX}px, ${currentY}px)`;
+        }
+        
+        // Zoom slider
+        zoomSlider.addEventListener('input', (e) => {
+            currentScale = parseFloat(e.target.value);
+            zoomValue.textContent = Math.round(currentScale * 100) + '%';
+            updateCropImageTransform();
+        });
+        
+        // Arrastar com rato
+        cropImage.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.clientX - currentX;
+            startY = e.clientY - currentY;
+            cropImage.style.cursor = 'grabbing';
+            e.preventDefault();
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+            if (isDragging) {
+                currentX = e.clientX - startX;
+                currentY = e.clientY - startY;
+                updateCropImageTransform();
+            }
+        });
+        
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            cropImage.style.cursor = 'grab';
+        });
+        
+        // Botão repor
+        resetBtn.addEventListener('click', resetTransformations);
+        
+        // Botão aplicar ao CV
+        applyBtn.addEventListener('click', () => {
+            // Criar um canvas para capturar a imagem com as transformações
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Definir tamanho do canvas igual ao container da foto (130x160)
+            canvas.width = 130;
+            canvas.height = 160;
+            
+            // Desenhar a imagem com as transformações aplicadas
+            const img = cropImage;
+            
+            // Calcular dimensões após transformações
+            const imgWidth = img.naturalWidth * currentScale;
+            const imgHeight = img.naturalHeight * currentScale;
+            
+            // Calcular posição centralizada + deslocamento do arrasto
+            const offsetX = (canvas.width - imgWidth) / 2 + currentX;
+            const offsetY = (canvas.height - imgHeight) / 2 + currentY;
+            
+            // Desenhar imagem no canvas
+            ctx.drawImage(img, offsetX, offsetY, imgWidth, imgHeight);
+            
+            // Converter canvas para data URL
+            const dataURL = canvas.toDataURL('image/png');
+            
+            // Atualizar foto no CV
+            profilePhoto.src = dataURL;
+            profilePhoto.style.display = 'block';
+            placeholderText.style.display = 'none';
+            
+            // Opcional: esconder área de edição
+            // editArea.style.display = 'none';
+            
+            alert('Foto aplicada com sucesso! Agora podes guardar como PDF.');
+        });
+        
+        // Prevenir comportamento padrão do rato na imagem
+        cropImage.addEventListener('dragstart', (e) => e.preventDefault());
+    </script>
 </body>
 </html>
