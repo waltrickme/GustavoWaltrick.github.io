@@ -18,21 +18,21 @@
             padding: 40px 20px;
         }
         .editor-container {
-            max-width: 1000px;
+            max-width: 1200px;
             width: 100%;
             display: flex;
-            flex-direction: column;
             gap: 30px;
+            align-items: flex-start;
         }
         .cv-wrapper {
             background-color: white;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 40px;
+            padding: 30px;
             border-radius: 12px;
+            flex: 2;
         }
         .cv-container {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 100%;
             color: black;
             line-height: 1.5;
         }
@@ -56,6 +56,7 @@
             cursor: pointer;
             transition: all 0.2s;
             position: relative;
+            flex-shrink: 0;
         }
         .photo-container:hover {
             border-color: #3498db;
@@ -75,6 +76,7 @@
             align-items: center;
             justify-content: center;
             font-size: 14px;
+            pointer-events: none;
         }
         .photo-container img {
             width: 100%;
@@ -98,32 +100,32 @@
             flex: 1;
         }
         .header-text h1 {
-            font-size: 32px;
+            font-size: 28px;
             margin-bottom: 10px;
         }
         .contact-info {
             margin-bottom: 5px;
-            font-size: 14px;
+            font-size: 13px;
             color: #333;
         }
         .section {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
         .section-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             text-transform: uppercase;
             border-bottom: 2px solid #000;
             padding-bottom: 4px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: black;
         }
         .job {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .job-header {
             font-weight: bold;
-            font-size: 16px;
+            font-size: 15px;
         }
         .job-company {
             font-weight: 600;
@@ -138,68 +140,56 @@
             margin-left: 0;
         }
         .job-description li {
-            margin-bottom: 5px;
-            font-size: 14px;
+            margin-bottom: 4px;
+            font-size: 13px;
             color: #222;
         }
         .job-description li::before {
             content: "•";
-            margin-right: 8px;
+            margin-right: 6px;
         }
         .education-item {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         .education-title {
             font-weight: bold;
-            font-size: 15px;
+            font-size: 14px;
         }
         .education-sub {
             color: #333;
-        }
-        .education-date {
-            color: #555;
+            font-size: 13px;
         }
         .skill-list {
             list-style-type: none;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-        .skill-list li {
-            margin-bottom: 5px;
-            font-size: 14px;
+            gap: 8px;
+            font-size: 13px;
         }
         .skill-list li::before {
             content: "•";
-            margin-right: 8px;
+            margin-right: 6px;
         }
         .language-list {
             list-style-type: none;
-        }
-        .language-list li {
-            margin-bottom: 5px;
-            font-size: 14px;
+            font-size: 13px;
         }
         .language-list li::before {
             content: "•";
-            margin-right: 8px;
+            margin-right: 6px;
         }
         .additional-info p {
             margin-bottom: 5px;
-            font-size: 14px;
+            font-size: 13px;
         }
         hr {
             border: 0;
             border-top: 1px solid #ccc;
             margin: 15px 0;
         }
-        a {
-            color: black;
-            text-decoration: none;
-        }
         .row {
             display: flex;
-            gap: 30px;
+            gap: 25px;
         }
         .col {
             flex: 1;
@@ -208,17 +198,20 @@
             font-size: 11px;
             color: #777;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 15px;
             font-style: italic;
         }
         
-        /* Painel de edição */
+        /* Painel de edição - agora na lateral */
         .editor-panel {
             background-color: white;
             border-radius: 12px;
             padding: 25px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            margin-top: 20px;
+            flex: 1;
+            position: sticky;
+            top: 40px;
+            max-width: 350px;
         }
         .editor-title {
             font-size: 18px;
@@ -241,11 +234,11 @@
         }
         .control-group label {
             font-weight: bold;
-            width: 80px;
+            width: 70px;
         }
         .slider {
             flex: 1;
-            min-width: 200px;
+            min-width: 150px;
         }
         .button-group {
             display: flex;
@@ -254,12 +247,13 @@
             margin-top: 10px;
         }
         .btn {
-            padding: 10px 20px;
+            padding: 8px 16px;
             border: none;
             border-radius: 6px;
             cursor: pointer;
             font-weight: bold;
             transition: all 0.2s;
+            font-size: 13px;
         }
         .btn-primary {
             background-color: #3498db;
@@ -289,16 +283,9 @@
         .btn-warning:hover {
             background-color: #e67e22;
         }
-        .btn-danger {
-            background-color: #e74c3c;
-            color: white;
-        }
-        .btn-danger:hover {
-            background-color: #c0392b;
-        }
         .preview-container {
             border: 2px dashed #ccc;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
             border-radius: 8px;
             background-color: #f9f9f9;
@@ -306,20 +293,22 @@
         .preview-title {
             font-weight: bold;
             margin-bottom: 10px;
+            font-size: 14px;
         }
         .crop-container {
             position: relative;
             width: 100%;
-            max-height: 400px;
+            height: 200px;
             overflow: hidden;
             display: flex;
             justify-content: center;
             background-color: #eee;
             border-radius: 8px;
+            margin-bottom: 10px;
         }
         #cropImage {
-            max-width: 100%;
-            max-height: 400px;
+            max-width: none;
+            height: auto;
             cursor: grab;
             transform-origin: center;
         }
@@ -330,7 +319,7 @@
             display: none !important;
         }
         .info-text {
-            font-size: 12px;
+            font-size: 11px;
             color: #666;
             margin-top: 5px;
         }
@@ -350,9 +339,9 @@
         }
         .modal-content {
             background-color: white;
-            padding: 30px;
+            padding: 25px;
             border-radius: 12px;
-            max-width: 400px;
+            max-width: 350px;
             text-align: center;
         }
         .modal-buttons {
@@ -360,12 +349,6 @@
             gap: 15px;
             justify-content: center;
             margin-top: 20px;
-        }
-        .edit-panel-hidden {
-            display: none;
-        }
-        .edit-panel-visible {
-            display: block;
         }
         .photo-edit-icon {
             position: absolute;
@@ -382,20 +365,49 @@
             font-size: 14px;
             pointer-events: none;
         }
-        .fit-info {
-            font-size: 12px;
-            color: #e67e22;
-            margin-top: 5px;
+        
+        /* Pré-visualização em tempo real */
+        .live-preview {
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+        .live-preview-title {
             font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .mini-photo {
+            width: 130px;
+            height: 160px;
+            border: 2px solid #3498db;
+            overflow: hidden;
+            margin: 0 auto;
+            background-color: #f0f0f0;
+        }
+        #previewPhoto {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .zoom-hint {
+            background-color: #f0f7ff;
+            padding: 8px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-size: 12px;
+            border-left: 3px solid #3498db;
         }
     </style>
 </head>
 <body>
     <div class="editor-container">
-        <!-- CV Preview -->
+        <!-- CV Preview (lado esquerdo) -->
         <div class="cv-wrapper">
             <div class="cv-container">
-                <!-- HEADER WITH PHOTO (clicável) -->
+                <!-- HEADER WITH PHOTO -->
                 <div class="header">
                     <div class="photo-container" id="photoPlaceholder">
                         <div class="photo-placeholder" id="placeholderText">📷</div>
@@ -414,7 +426,7 @@
                 <!-- PERFIL PROFISSIONAL -->
                 <div class="section">
                     <div class="section-title">PERFIL PROFISSIONAL</div>
-                    <p style="font-size: 14px; text-align: justify; color: #222;">
+                    <p style="font-size: 13px; text-align: justify; color: #222;">
                         Profissional com mais de 7 anos de experiência em <strong>front-office, atendimento ao cliente e gestão administrativa</strong>, com forte capacidade organizacional e visão analítica. Atualmente a frequentar formação avançada em Análise de Dados (IBM e Prepara Portugal), com domínio prático de <strong>Excel Avançado, CRM e ferramentas de faturação</strong>. Inscrito no IEFP, com disponibilidade imediata para trabalho presencial em Lisboa. Fluente em inglês, com experiência comprovada em contextos internacionais.
                     </p>
                 </div>
@@ -486,14 +498,14 @@
                         <div class="section">
                             <div class="section-title">COMPETÊNCIAS</div>
                             <ul class="skill-list">
-                                <li><strong>Front-Office:</strong> Atendimento presencial e telefónico</li>
-                                <li><strong>Gestão Administrativa:</strong> Contratos, arquivo, documentação</li>
-                                <li><strong>Financeiro:</strong> Faturação, controlo de caixa, pagamentos</li>
-                                <li><strong>Excel Avançado:</strong> Tabelas dinâmicas, PROCX, validação</li>
-                                <li><strong>CRM:</strong> Gestão de clientes e bases de dados</li>
-                                <li><strong>Power BI:</strong> Dashboards e relatórios</li>
-                                <li><strong>Organização:</strong> Arquivo físico e digital</li>
-                                <li><strong>Idiomas:</strong> Inglês fluente, Espanhol B1, Italiano A1</li>
+                                <li><strong>Front-Office:</strong> Atendimento presencial</li>
+                                <li><strong>Gestão Administrativa:</strong> Contratos, arquivo</li>
+                                <li><strong>Financeiro:</strong> Faturação, controlo de caixa</li>
+                                <li><strong>Excel Avançado</strong></li>
+                                <li><strong>CRM</strong></li>
+                                <li><strong>Power BI</strong></li>
+                                <li><strong>Organização</strong></li>
+                                <li><strong>Inglês fluente</strong></li>
                             </ul>
                         </div>
 
@@ -502,9 +514,9 @@
                             <div class="section-title">IDIOMAS</div>
                             <ul class="language-list">
                                 <li><strong>Português:</strong> Nativo</li>
-                                <li><strong>Inglês:</strong> Fluente (escrito e falado)</li>
-                                <li><strong>Espanhol:</strong> Intermediário (B1)</li>
-                                <li><strong>Italiano:</strong> Iniciante (A1)</li>
+                                <li><strong>Inglês:</strong> Fluente</li>
+                                <li><strong>Espanhol:</strong> Intermediário</li>
+                                <li><strong>Italiano:</strong> Iniciante</li>
                             </ul>
                         </div>
                     </div>
@@ -514,44 +526,46 @@
                 <div class="section">
                     <div class="section-title">INFORMAÇÕES ADICIONAIS</div>
                     <div class="additional-info">
-                        <p>✅ <strong>Inscrito no IEFP</strong> (desempregado) – requisito obrigatório da vaga</p>
+                        <p>✅ <strong>Inscrito no IEFP</strong></p>
                         <p>✅ Disponível para trabalho presencial em Lisboa</p>
-                        <p>✅ Carta de condução e transporte próprio</p>
+                        <p>✅ Carta de condução</p>
                         <p>✅ Disponibilidade imediata</p>
                     </div>
                 </div>
 
-                <!-- FOOTER -->
                 <hr>
                 <div class="footer-note">
-                    Modelo Europeu com fotografia | https://waltrickme.github.io
+                    Modelo Europeu com fotografia | waltrickme.github.io
                 </div>
             </div>
         </div>
 
-        <!-- Painel de Edição de Foto (inicialmente escondido) -->
+        <!-- Painel de Edição de Foto (lado direito) -->
         <div id="editorPanel" class="editor-panel hidden">
             <div class="editor-title">
                 <span>🖼️ Editor de Foto</span>
             </div>
             
             <div class="editor-controls">
-                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <input type="file" id="fileInput" accept="image/*">
                 
                 <div class="control-group">
-                    <button class="btn btn-primary" id="selectPhotoBtn">📁 Selecionar Nova Foto</button>
-                    <span class="info-text">Escolha uma imagem do computador</span>
+                    <button class="btn btn-primary" id="selectPhotoBtn" style="width: 100%;">📁 Selecionar Foto</button>
                 </div>
 
                 <div id="editArea">
                     <div class="preview-container">
-                        <div class="preview-title">Ajusta a tua foto:</div>
-                        <div class="fit-info" id="fitWarning">⚠️ Ajusta o zoom para que a foto caiba no quadrado</div>
+                        <div class="preview-title">Ajustar imagem:</div>
+                        
                         <div class="crop-container" id="cropContainer">
-                            <img id="cropImage" src="" alt="Imagem para ajustar" style="transform: scale(1) translate(0px, 0px);">
+                            <img id="cropImage" src="" alt="Imagem para ajustar">
                         </div>
                         
-                        <div class="control-group" style="margin-top: 15px;">
+                        <div class="zoom-hint">
+                            💡 Dica: Usa o zoom para que a imagem <strong>preencha todo o quadro</strong>.
+                        </div>
+                        
+                        <div class="control-group" style="margin-top: 10px;">
                             <label>🔍 Zoom:</label>
                             <input type="range" id="zoomSlider" class="slider" min="0.5" max="3" step="0.05" value="1">
                             <span id="zoomValue">100%</span>
@@ -559,17 +573,22 @@
                         
                         <div class="control-group">
                             <label>↔️ Mover:</label>
-                            <span class="info-text">Arrasta a imagem com o rato para posicionar</span>
+                            <span class="info-text">Arrasta a imagem</span>
+                        </div>
+                        
+                        <!-- Pré-visualização em tempo real -->
+                        <div class="live-preview">
+                            <div class="live-preview-title">🔍 Pré-visualização no CV:</div>
+                            <div class="mini-photo">
+                                <img id="previewPhoto" src="" alt="Preview" style="display: none;">
+                                <div id="previewPlaceholder" style="width:100%; height:100%; background-color:#f0f0f0; display: flex; align-items: center; justify-content: center; color: #999;">Prévia</div>
+                            </div>
                         </div>
                         
                         <div class="button-group">
                             <button class="btn btn-warning" id="resetBtn">🔄 Repor</button>
-                            <button class="btn btn-success" id="applyBtn">✅ Guardar Foto no CV</button>
+                            <button class="btn btn-success" id="applyBtn">✅ Guardar</button>
                             <button class="btn btn-secondary" id="cancelBtn">✖️ Cancelar</button>
-                        </div>
-                        
-                        <div class="info-text" style="margin-top: 10px;">
-                            ⚡ Depois de guardar, podes imprimir como PDF (Ctrl+P)
                         </div>
                     </div>
                 </div>
@@ -577,14 +596,14 @@
         </div>
     </div>
 
-    <!-- Modal de confirmação (inicialmente escondido) -->
+    <!-- Modal de confirmação -->
     <div id="confirmModal" class="modal-overlay" style="display: none;">
         <div class="modal-content">
             <h3 style="margin-bottom: 15px;">✏️ Editar Foto</h3>
             <p>Tens a certeza que desejas editar a foto do CV?</p>
             <div class="modal-buttons">
                 <button class="btn btn-primary" id="confirmEdit">Sim, editar</button>
-                <button class="btn btn-secondary" id="cancelEdit">Não, cancelar</button>
+                <button class="btn btn-secondary" id="cancelEdit">Cancelar</button>
             </div>
         </div>
     </div>
@@ -601,6 +620,8 @@
         const editorPanel = document.getElementById('editorPanel');
         const editArea = document.getElementById('editArea');
         const cropImage = document.getElementById('cropImage');
+        const previewPhoto = document.getElementById('previewPhoto');
+        const previewPlaceholder = document.getElementById('previewPlaceholder');
         const zoomSlider = document.getElementById('zoomSlider');
         const zoomValue = document.getElementById('zoomValue');
         const resetBtn = document.getElementById('resetBtn');
@@ -611,16 +632,14 @@
         const confirmEdit = document.getElementById('confirmEdit');
         const cancelEdit = document.getElementById('cancelEdit');
         
-        const fitWarning = document.getElementById('fitWarning');
-        
-        // Variáveis para controlo do arrasto
+        // Variáveis
         let isDragging = false;
         let startX, startY;
         let currentX = 0, currentY = 0;
         let currentScale = 1;
         let hasPhoto = false;
         
-        // Mostrar ícone de edição se já houver foto
+        // Inicializar
         if (profilePhoto.src && profilePhoto.src !== '') {
             hasPhoto = true;
             editIcon.style.display = 'flex';
@@ -629,10 +648,8 @@
         // Clique na foto
         photoPlaceholder.addEventListener('click', () => {
             if (hasPhoto) {
-                // Se já existe foto, mostrar modal de confirmação
                 confirmModal.style.display = 'flex';
             } else {
-                // Se não existe foto, abrir diretamente o editor
                 openEditor();
             }
         });
@@ -643,7 +660,6 @@
             openEditor();
         });
         
-        // Cancelar edição
         cancelEdit.addEventListener('click', () => {
             confirmModal.style.display = 'none';
         });
@@ -659,7 +675,6 @@
         function openEditor() {
             editorPanel.classList.remove('hidden');
             if (!cropImage.src) {
-                // Se não há imagem carregada, abrir seletor automaticamente
                 fileInput.click();
             }
         }
@@ -674,7 +689,7 @@
             fileInput.click();
         });
         
-        // Cancelar edição
+        // Cancelar
         cancelBtn.addEventListener('click', closeEditor);
         
         // Quando um ficheiro é selecionado
@@ -684,61 +699,78 @@
                 const reader = new FileReader();
                 reader.onload = (event) => {
                     cropImage.src = event.target.result;
-                    resetTransformations();
-                    editArea.style.display = 'block';
                     
-                    // Quando a imagem carregar, verificar se precisa de zoom
+                    // Quando a imagem carregar, calcular zoom inicial
                     cropImage.onload = () => {
-                        checkFit();
+                        calculateInitialZoom();
+                        updatePreview();
                     };
+                    
+                    editArea.style.display = 'block';
                 };
                 reader.readAsDataURL(file);
             }
         });
         
-        // Verificar se a imagem cabe no quadrado
-        function checkFit() {
-            if (cropImage.naturalWidth && cropImage.naturalHeight) {
-                const containerWidth = 130;
-                const containerHeight = 160;
-                
-                const imgRatio = cropImage.naturalWidth / cropImage.naturalHeight;
-                const containerRatio = containerWidth / containerHeight;
-                
-                let suggestedZoom = 1;
-                
-                if (imgRatio > containerRatio) {
-                    // Imagem mais larga que o container
-                    suggestedZoom = containerHeight / cropImage.naturalHeight;
-                } else {
-                    // Imagem mais alta que o container
-                    suggestedZoom = containerWidth / cropImage.naturalWidth;
-                }
-                
-                // Se o zoom sugerido for menor que 1, significa que a imagem é maior que o container
-                if (suggestedZoom < 1) {
-                    fitWarning.textContent = '⚠️ Imagem muito grande! Usa o zoom para ajustar.';
-                    fitWarning.style.color = '#e74c3c';
-                } else {
-                    fitWarning.textContent = '✅ Imagem com bom tamanho. Podes ajustar o zoom se quiseres.';
-                    fitWarning.style.color = '#27ae60';
-                }
-            }
-        }
-        
-        // Resetar transformações
-        function resetTransformations() {
-            currentScale = 1;
+        // Calcular zoom inicial para caber no quadro
+        function calculateInitialZoom() {
+            const containerWidth = 130;
+            const containerHeight = 160;
+            
+            const imgWidth = cropImage.naturalWidth;
+            const imgHeight = cropImage.naturalHeight;
+            
+            // Calcular zoom para caber no container
+            const scaleX = containerWidth / imgWidth;
+            const scaleY = containerHeight / imgHeight;
+            
+            // Usar o MAIOR zoom (para preencher o quadro)
+            currentScale = Math.max(scaleX, scaleY);
+            
+            // Limitar zoom mínimo
+            if (currentScale < 0.5) currentScale = 0.5;
+            if (currentScale > 3) currentScale = 3;
+            
+            zoomSlider.value = currentScale;
+            zoomValue.textContent = Math.round(currentScale * 100) + '%';
+            
+            // Reset posição
             currentX = 0;
             currentY = 0;
-            zoomSlider.value = 1;
-            zoomValue.textContent = '100%';
+            
             updateCropImageTransform();
         }
         
         // Atualizar transformação da imagem
         function updateCropImageTransform() {
             cropImage.style.transform = `scale(${currentScale}) translate(${currentX}px, ${currentY}px)`;
+            updatePreview();
+        }
+        
+        // Atualizar pré-visualização
+        function updatePreview() {
+            if (!cropImage.src) return;
+            
+            // Criar canvas para pré-visualização
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = 130;
+            canvas.height = 160;
+            
+            const imgWidth = cropImage.naturalWidth * currentScale;
+            const imgHeight = cropImage.naturalHeight * currentScale;
+            
+            const offsetX = (canvas.width - imgWidth) / 2 + currentX;
+            const offsetY = (canvas.height - imgHeight) / 2 + currentY;
+            
+            ctx.drawImage(cropImage, offsetX, offsetY, imgWidth, imgHeight);
+            
+            const dataURL = canvas.toDataURL('image/png');
+            
+            previewPhoto.src = dataURL;
+            previewPhoto.style.display = 'block';
+            previewPlaceholder.style.display = 'none';
         }
         
         // Zoom slider
@@ -748,7 +780,7 @@
             updateCropImageTransform();
         });
         
-        // Arrastar com rato
+        // Arrastar
         cropImage.addEventListener('mousedown', (e) => {
             isDragging = true;
             startX = e.clientX - currentX;
@@ -771,45 +803,30 @@
         });
         
         // Botão repor
-        resetBtn.addEventListener('click', resetTransformations);
+        resetBtn.addEventListener('click', () => {
+            if (cropImage.src) {
+                calculateInitialZoom();
+            }
+        });
         
-        // Botão aplicar ao CV
+        // Botão aplicar
         applyBtn.addEventListener('click', () => {
-            const canvas = document.createElement('canvas');
-            const ctx = canvas.getContext('2d');
-            
-            canvas.width = 130;
-            canvas.height = 160;
-            
-            const img = cropImage;
-            
-            const imgWidth = img.naturalWidth * currentScale;
-            const imgHeight = img.naturalHeight * currentScale;
-            
-            const offsetX = (canvas.width - imgWidth) / 2 + currentX;
-            const offsetY = (canvas.height - imgHeight) / 2 + currentY;
-            
-            ctx.drawImage(img, offsetX, offsetY, imgWidth, imgHeight);
-            
-            const dataURL = canvas.toDataURL('image/png');
-            
-            profilePhoto.src = dataURL;
+            // Usar a mesma pré-visualização
+            profilePhoto.src = previewPhoto.src;
             profilePhoto.style.display = 'block';
             placeholderText.style.display = 'none';
             editIcon.style.display = 'flex';
             
             hasPhoto = true;
-            
-            // Fechar editor
             closeEditor();
             
-            alert('Foto guardada com sucesso! Agora podes gerar o PDF (Ctrl+P).');
+            alert('Foto guardada! Podes gerar o PDF com Ctrl+P.');
         });
         
-        // Prevenir comportamento padrão do rato na imagem
+        // Prevenir drag default
         cropImage.addEventListener('dragstart', (e) => e.preventDefault());
         
-        // Tecla ESC para fechar modal
+        // Tecla ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 confirmModal.style.display = 'none';
